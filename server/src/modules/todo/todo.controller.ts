@@ -9,7 +9,8 @@ import {
   Delete,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
-import { TodoDTO } from './dto/todo.dto';
+import { TodoDTO } from './dto/create-todo.dto';
+import { UpdateTodoDTO } from './dto/update-todo.dto';
 
 @Controller('todo')
 export class TodoController {
@@ -20,13 +21,8 @@ export class TodoController {
     return this.todoService.create(createTodoDto);
   }
 
-  @Get()
-  async findAll() {
-    return this.todoService.findAll();
-  }
-
   @Put('/:id')
-  async update(@Param('id') id: string, @Body() updateTodoDto: TodoDTO) {
+  async update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDTO) {
     return this.todoService.update(id, updateTodoDto);
   }
 
