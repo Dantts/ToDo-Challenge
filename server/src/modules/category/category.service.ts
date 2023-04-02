@@ -55,6 +55,9 @@ export class CategoryService {
         id,
       },
       data: category,
+      include: {
+        todo: true,
+      },
     });
 
     return new ApiResponse(
