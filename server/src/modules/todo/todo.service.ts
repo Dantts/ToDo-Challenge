@@ -21,20 +21,7 @@ export class TodoService {
       },
     });
 
-    return new ApiResponse(
-      HttpStatus.CREATED,
-      'Success to create ToDo',
-      todoData,
-    );
-  }
-
-  //Adicionar logica de paginação. Futuro.
-  async findAll() {
-    return new ApiResponse(
-      HttpStatus.OK,
-      'Success to find all ToDos',
-      await this.prisma.todo.findMany(),
-    );
+    return todoData;
   }
 
   async update(id: string, updateTodoDto: UpdateTodoDTO) {
@@ -52,7 +39,7 @@ export class TodoService {
       },
     });
 
-    return new ApiResponse(HttpStatus.OK, 'Success to update ToDo', todoData);
+    return todoData;
   }
 
   async changeIsCompleteStatus(id: string) {
@@ -71,11 +58,7 @@ export class TodoService {
       },
     });
 
-    return new ApiResponse(
-      HttpStatus.OK,
-      'Success to mark with complete this ToDo',
-      todoData,
-    );
+    return todoData;
   }
 
   async remove(id: string) {
