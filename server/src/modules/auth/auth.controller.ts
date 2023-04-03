@@ -12,6 +12,7 @@ import { IsPublic } from './decorators/is-public.decorator';
 import { AuthRequest } from './models/requests/Auth.request';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from './models/entities/user.entity';
+import { ApiResponse } from '../../models/ApiResponse.model';
 
 @Controller('auth')
 export class AuthController {
@@ -24,14 +25,22 @@ export class AuthController {
 
   @Post('sign-up')
   @IsPublic()
-  signUp(@Body() createUserDto: CreateUserDto) {
-    return this.authService.signUp(createUserDto);
+  async signUp(@Body() createUserDto: CreateUserDto) {
+    return new ApiResponse(
+      HttpStatus.CREATED,
+      'Success',
+      await this.authService.signUp(createUserDto),
+    );
   }
 
   @Post('sign-in')
   @IsPublic()
   @HttpCode(HttpStatus.OK)
   async signIn(@Body() user: AuthRequest) {
-    return this.authService.signIn(user);
+    return new ApiResponse(
+      HttpStatus.OK,
+      'Success',
+      await this.authService.signIn(user),
+    );
   }
 }

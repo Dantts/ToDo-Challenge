@@ -1,4 +1,4 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './models/dto/create-user.dto';
 import { User } from './models/entities/user.entity';
 import * as bcrypt from 'bcrypt';
@@ -6,16 +6,13 @@ import { PrismaService } from '../../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { AuthRequest } from './models/requests/Auth.request';
 import { AuthResponse } from './models/responses/AuthResponse.model';
-import { ApiResponse } from '../../models/ApiResponse.model';
 import { UnauthorizedError } from './models/errors/Unauthorized.error';
 
 @Injectable()
 export class AuthService {
   constructor(private prisma: PrismaService, private jwtService: JwtService) {}
 
-  async signUp(
-    createUserDto: CreateUserDto,
-  ): Promise<ApiResponse<AuthResponse>> {
+  async signUp(createUserDto: CreateUserDto): Promise<AuthResponse> {
     if (await this.findByUsername(createUserDto.username)) {
       throw new UnauthorizedError('User Already exists');
     }
@@ -35,18 +32,14 @@ export class AuthService {
       name: createdUser.name,
     };
 
-    return new ApiResponse(
-      HttpStatus.CREATED,
-      'Success',
-      new AuthResponse(
-        createdUser.id,
-        createdUser.name,
-        this.jwtService.sign(payload),
-      ),
+    return new AuthResponse(
+      createdUser.id,
+      createdUser.name,
+      this.jwtService.sign(payload),
     );
   }
 
-  async signIn(authData: AuthRequest): Promise<ApiResponse<AuthResponse>> {
+  async signIn(authData: AuthRequest): Promise<AuthResponse> {
     const user = await this.findByUsername(authData.username);
 
     if (!user || !(await bcrypt.compare(authData.password, user.password))) {
@@ -59,14 +52,10 @@ export class AuthService {
       name: user.name,
     };
 
-    return new ApiResponse(
-      HttpStatus.CREATED,
-      'Success',
-      new AuthResponse(user.id, user.name, this.jwtService.sign(payload)),
-    );
+    return new AuthResponse(user.id, user.name, this.jwtService.sign(payload));
   }
 
-  private findByUsername(username: string): Promise<User> {
+  private findByUsername(username: string) {
     return this.prisma.user.findUnique({ where: { username } });
   }
 }
