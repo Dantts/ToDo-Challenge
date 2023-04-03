@@ -19,11 +19,7 @@ export class CategoryService {
       },
     });
 
-    return new ApiResponse(
-      HttpStatus.OK,
-      'Success to get all categories',
-      categoryData,
-    );
+    return categoryData;
   }
 
   async create(user: User, category: CategoryDto) {
@@ -38,11 +34,7 @@ export class CategoryService {
       },
     });
 
-    return new ApiResponse(
-      HttpStatus.CREATED,
-      'Success to create category',
-      categoryData,
-    );
+    return categoryData;
   }
 
   async update(id: string, category: CategoryDto) {
@@ -60,11 +52,7 @@ export class CategoryService {
       },
     });
 
-    return new ApiResponse(
-      HttpStatus.OK,
-      'Success to update category',
-      categoryData,
-    );
+    return categoryData;
   }
 
   async delete(id: string) {
