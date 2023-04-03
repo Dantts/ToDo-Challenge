@@ -70,6 +70,11 @@ export const TodoList = ({ todo }: Props) => {
           )}
         >
           <input readOnly={todo.id != todoId} {...register("title")} />
+          {todo.isComplete && (
+            <div>
+              {new Date(todo.updatedAt || "").toLocaleDateString("pt-BR")}
+            </div>
+          )}
           {todo.id == todoId && (
             <>
               <button type="submit">
@@ -103,6 +108,7 @@ export const TodoList = ({ todo }: Props) => {
           <button
             type="button"
             data-testid="remove-task-button"
+            name="remove-todo"
             onClick={() => handleRemoveTask(todo.id, todo.categoryId)}
           >
             <FiTrash size={16} />

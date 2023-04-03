@@ -63,7 +63,7 @@ export const NewToDoModal = ({
 
         <div>
           <button type="submit">Cadastrar</button>
-          <button type="button" onClick={closeModal}>
+          <button data-testid="close-modal" type="button" onClick={closeModal}>
             Cancelar
           </button>
         </div>
