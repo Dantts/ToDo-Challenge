@@ -78,7 +78,7 @@ export const CategoryList = ({ data, handleOpenNewToDoModal }: Props) => {
             />
             {data.id == categoryId && (
               <section className="category-button-container">
-                <button type="submit">
+                <button type="submit" data-testid="change-title">
                   <AiOutlineCheckCircle size={25} />
                 </button>
                 <button
@@ -102,7 +102,10 @@ export const CategoryList = ({ data, handleOpenNewToDoModal }: Props) => {
           </form>
         </section>
 
-        <button onClick={() => handleOpenNewToDoModal(data.id)}>
+        <button
+          onClick={() => handleOpenNewToDoModal(data.id)}
+          data-testid="open-modal"
+        >
           <AiOutlinePlusCircle size={26} color="#3d3d4d" />
         </button>
       </div>

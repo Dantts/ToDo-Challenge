@@ -3,7 +3,7 @@ export interface ITodoProps {
   title: string;
   isComplete: boolean;
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string | null;
   categoryId: string;
 }
 
