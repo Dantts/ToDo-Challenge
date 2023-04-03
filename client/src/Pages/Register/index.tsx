@@ -30,25 +30,38 @@ export const Register: React.FC = () => {
     <div className="register">
       <form className="register-form" onSubmit={handleSubmit(handleRegister)}>
         <img src="/logo.svg" alt="to.do" className="register-form-img" />
-        <input
-          className="register-form-input"
-          placeholder="Digite seu nome"
-          {...register("name")}
-        />
-        {errors.name && <p>{errors.name.message}</p>}
-        <input
-          className="register-form-input"
-          placeholder="Digite o usuário"
-          {...register("username")}
-        />
-        {errors.username && <p>{errors.username.message}</p>}
-        <input
-          className="register-form-input"
-          placeholder="Digite a senha"
-          type="password"
-          {...register("password")}
-        />
-        {errors.password && <p>{errors.password.message}</p>}
+        <div style={{ width: "100%" }}>
+          <input
+            className="register-form-input"
+            placeholder="Digite seu nome"
+            {...register("name")}
+          />
+          {errors.name && (
+            <p style={{ position: "absolute" }}>{errors.name.message}</p>
+          )}
+        </div>
+        <div>
+          <input
+            className="register-form-input"
+            placeholder="Digite o login"
+            {...register("username")}
+          />
+          {errors.username && (
+            <p style={{ position: "absolute" }}>{errors.username.message}</p>
+          )}
+        </div>
+
+        <div>
+          <input
+            className="register-form-input"
+            placeholder="Digite a senha"
+            type="password"
+            {...register("password")}
+          />
+          {errors.password && (
+            <p style={{ position: "absolute" }}>{errors.password.message}</p>
+          )}
+        </div>
         <span className="register-form-span">
           Já possuí conta? <Link to={"/"}>Click aqui.</Link>
         </span>

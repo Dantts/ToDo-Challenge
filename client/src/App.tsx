@@ -7,6 +7,9 @@ import PrivateRoute from "./privateRoute";
 import { Register } from "./Pages/Register";
 import { Login } from "./Pages/Login";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +32,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
       <RouterProvider router={router} />
     </div>
   );

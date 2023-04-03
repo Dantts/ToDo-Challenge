@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { loginSchema, loginSchemaProps } from "../../models/schema/auth";
 import { useAuth } from "../../contexts/useAuth.context";
+import { toast } from "react-toastify";
 
 export const Login: React.FC = () => {
   const {
@@ -24,7 +25,11 @@ export const Login: React.FC = () => {
   }
 
   const handleLogin = async (formData: loginSchemaProps) => {
-    await signIn(formData);
+    try {
+      await signIn(formData);
+    } catch (error) {
+      toast.info("Usuário ou senha errados.");
+    }
   };
 
   return (

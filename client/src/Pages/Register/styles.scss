@@ -20,6 +20,17 @@
     justify-content: center;
     gap: 20px;
 
+    div {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 16px;
+
+      p {
+        margin-top: 53px;
+      }
+    }
+
     &-img {
       filter: brightness(0%);
       margin-bottom: 20px;
