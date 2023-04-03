@@ -2,7 +2,7 @@
 
 ## Observação
 
-Provavelmente será preciso roda o comando `npx prisma migrate dev`, apenas uma vez, para inicializar o BD.
+Provavelmente será preciso roda o comando `npx prisma migrate dev`, apenas uma vez, para inicializar o BD no backend.
 
 ## Funcionalidades e Desafios
 
